@@ -263,6 +263,18 @@ void qMRMLVolumeInfoWidget::updateWidgetFromMRML()
   double* origin = d->VolumeNode->GetOrigin();
   d->ImageOriginWidget->setCoordinates(origin);
   
+  double IToRASDirection[3] = {1.,0.,0.};
+  d->VolumeNode->GetIToRASDirection(IToRASDirection);
+  d->ImageIToRASDirectionWidget->setCoordinates(IToRASDirection);
+  
+  double JToRASDirection[3] = {0.,1.,0.};
+  d->VolumeNode->GetJToRASDirection(JToRASDirection);
+  d->ImageJToRASDirectionWidget->setCoordinates(JToRASDirection);
+  
+  double KToRASDirection[3] = {0.,0.,1.};
+  d->VolumeNode->GetKToRASDirection(KToRASDirection);
+  d->ImageKToRASDirectionWidget->setCoordinates(KToRASDirection);
+  
   d->CenterVolumePushButton->setEnabled(!this->isCentered());
   
   vtkSmartPointer<vtkMatrix4x4> mat  = vtkSmartPointer<vtkMatrix4x4>::New();

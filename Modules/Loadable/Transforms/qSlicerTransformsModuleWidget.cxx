@@ -20,10 +20,12 @@
 
 // Qt includes
 #include <QFileDialog>
+#include <QMainWindow>
 
 // SlicerQt includes
 #include "qSlicerTransformsModuleWidget.h"
 #include "ui_qSlicerTransformsModuleWidget.h"
+#include "qSlicerApplication.h"
 
 // vtkSlicerLogic includes
 #include "vtkSlicerTransformLogic.h"
@@ -106,6 +108,10 @@ void qSlicerTransformsModuleWidget::setup()
 {
   Q_D(qSlicerTransformsModuleWidget);
   d->setupUi(this);
+
+  // Add layout connection to transform info widget
+  d->TransformInfoWidget->setLayoutManager(
+    qSlicerApplication::application()->layoutManager());
 
   // Add coordinate reference button to a button group
   d->CoordinateReferenceButtonGroup =
